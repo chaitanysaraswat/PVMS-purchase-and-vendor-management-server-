@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PVMS - Purchase & Vendor Management System</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>📦 PVMS Dashboard</h1>
+
+    <!-- Dashboard Summary -->
+    <div id="dashboard-summary" class="hidden">
+      <div class="card">Vendors <span id="summaryVendors">0</span></div>
+      <div class="card">POs <span id="summaryPOs">0</span></div>
+      <div class="card">GRs <span id="summaryGRs">0</span></div>
+      <div class="card">Inventory <span id="summaryInventory">0</span></div>
+      <div class="card">GST Paid ₹<span id="summaryGST">0</span></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+      <button onclick="showSection('loginPage')">Login</button>
+      <button onclick="logout()">Logout</button>
+      <button onclick="showSection('vendors')">Vendors</button>
+      <button onclick="showSection('purchaseOrders')">Purchase Orders</button>
+      <button onclick="showSection('goodsReceipts')">Goods Receipts</button>
+      <button onclick="showSection('inventory')">Inventory</button>
+      <button onclick="showSection('gstSummary')">GST Summary</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Login Page -->
+    <section id="loginPage">
+      <h2>Login</h2>
+      <form id="loginForm">
+        <input type="text" id="loginUsername" placeholder="Username" required />
+        <input type="password" id="loginPassword" placeholder="Password" required />
+        <button type="submit">Login</button>
+      </form>
+      <p id="loginError" style="color:red;"></p>
+    </section>
+
+    <!-- Vendors Section -->
+    <section id="vendors" class="hidden">
+      <h2>Vendor Management</h2>
+      <form id="vendorForm">
+        <input type="text" id="vendorName" placeholder="Vendor Name" required />
+        <input type="text" id="vendorPhone" placeholder="Phone" />
+        <input type="email" id="vendorEmail" placeholder="Email" />
+        <input type="text" id="vendorGSTIN" placeholder="GSTIN" />
+        <button type="submit">Save Vendor</button>
+      </form>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th><th>Name</th><th>Phone</th><th>Email</th><th>GSTIN</th><th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="vendorTableBody"></tbody>
+      </table>
+    </section>
+
+    <!-- Purchase Orders Section -->
+    <section id="purchaseOrders" class="hidden">
+      <h2>Purchase Orders</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th><th>Vendor</th><th>PO Date</th><th>Delivery Date</th>
+            <th>Value</th><th>GST</th><th>Status</th><th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="poTableBody"></tbody>
+      </table>
+    </section>
+
+    <!-- Goods Receipts Section -->
+    <section id="goodsReceipts" class="hidden">
+      <h2>Goods Receipts</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th><th>PO ID</th><th>Date</th><th>Qty Received</th>
+            <th>Qty Ordered</th><th>Status</th><th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="grTableBody"></tbody>
+      </table>
+    </section>
+
+    <!-- Inventory Section -->
+    <section id="inventory" class="hidden">
+      <h2>Inventory</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th><th>Item</th><th>Stock</th><th>Reorder Level</th>
+            <th>Supplier</th><th>Price</th><th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="inventoryTableBody"></tbody>
+      </table>
+    </section>
+
+    <!-- GST Summary Section -->
+    <section id="gstSummary" class="hidden">
+      <h2>GST Summary</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th><th>Vendor</th><th>HSN</th><th>Tax Paid</th>
+            <th>Taxable Amount</th><th>Date Range</th>
+          </tr>
+        </thead>
+        <tbody id="gstTableBody"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
